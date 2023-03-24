@@ -3,14 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerGunController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
+    
+    
     [SerializeField] float rotationSpeed = 100.0f;
     [SerializeField] float rotationAngle = 30.0f;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject firePoint;
     [SerializeField] float shootingForce = 10.0f;
     private float currentAngle;
+
+    public bool isTurnComplete;
+    
 
 
     void GunRotator()
@@ -28,11 +33,13 @@ public class PlayerGunController : MonoBehaviour
     void BulletShooter()
     {
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) & !isTurnComplete)
         {
+            
             GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(transform.right * shootingForce);
+            isTurnComplete = true;
             
         }
 
@@ -40,6 +47,7 @@ public class PlayerGunController : MonoBehaviour
 
     void Start()
     {
+        isTurnComplete = false; 
         ResetGunZRotationAxis();
     }
 
