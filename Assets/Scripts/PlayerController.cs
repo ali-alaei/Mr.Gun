@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     void BulletShooter()
     {
         
-        if (Input.GetKeyDown(KeyCode.Space) & !isTurnComplete)
+        if (Input.GetKeyDown(KeyCode.Space) && !isTurnComplete)
         {
             
             GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);

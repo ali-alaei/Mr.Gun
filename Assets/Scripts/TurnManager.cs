@@ -17,24 +17,31 @@ public class TurnManager : MonoBehaviour
    private void Start()
    {
        
-       player.GetComponent<PlayerController>().enabled = true;
-       enemy.GetComponent<EnemyController>().enabled = false;
+    //    player.GetComponent<PlayerController>().enabled = true;
+    //    enemy.GetComponent<EnemyController>().enabled = false;
    }
 
    private void Update()
    {
-       if (isPlayerTurn && player.GetComponent<PlayerController>().isTurnComplete)
+        
+       if (isPlayerTurn && !(player.GetComponent<PlayerController>().isTurnComplete))
        {
+            // player's turn
+
            isPlayerTurn = false;
-           enemy.GetComponent<EnemyController>().enabled = true;
+        //    player.GetComponent<PlayerController>().isTurnComplete = true;
+        //    enemy.GetComponent<EnemyController>().enabled = true;
            player.GetComponent<PlayerController>().isTurnComplete = false;
        }
-       else if (!isPlayerTurn && enemy.GetComponent<EnemyController>().isTurnComplete)
+        
+       else if (!isPlayerTurn && enemy.GetComponent<EnemyController>().isAlive && !(enemy.GetComponent<EnemyController>().isTurnComplete))
        {
+            // enemy's turn
+
            isPlayerTurn = true;
-           enemy.GetComponent<EnemyController>().enabled = false;
-           player.GetComponent<PlayerController>().enabled = true;
-           enemy.GetComponent<EnemyController>().isTurnComplete = false;
+        //    enemy.GetComponent<EnemyController>().enabled = false;
+        //    player.GetComponent<PlayerController>().enabled = true;
+           enemy.GetComponent<EnemyController>().isTurnComplete = true;
        }
    }
 }
