@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] float rotationSpeed = 100.0f;
     [SerializeField] float rotationAngle = 30.0f;
+    [SerializeField] GameObject gun;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject firePoint;
     [SerializeField] float shootingForce = 10.0f;
@@ -22,12 +23,12 @@ public class PlayerController : MonoBehaviour
     {
         float normalizedTime = Mathf.PingPong(Time.time * rotationSpeed, 1.0f);
         currentAngle = Mathf.Lerp(0.0f, rotationAngle, normalizedTime);
-        transform.rotation = Quaternion.Euler(0, 180, currentAngle);
+        gun.transform.rotation = Quaternion.Euler(0, 180, currentAngle);
     }
 
     void ResetGunZRotationAxis()
     {
-        transform.rotation = Quaternion.Euler(0, 180, 0);
+        gun.transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
     void BulletShooter()
@@ -38,16 +39,21 @@ public class PlayerController : MonoBehaviour
             
             GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(transform.right * shootingForce);
+            rb.AddForce(gun.transform.right * shootingForce);
             isTurnComplete = true;
             
         }
 
     }
 
+    void Awake()
+    {
+        isTurnComplete = false;
+    }
+    
     void Start()
     {
-        isTurnComplete = false; 
+        
         ResetGunZRotationAxis();
     }
 

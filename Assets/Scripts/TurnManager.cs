@@ -16,9 +16,13 @@ public class TurnManager : MonoBehaviour
     
    private bool isPlayerTurn;
 
+    private void Awake()
+    {
+        isPlayerTurn = true;
+    }
    private void Start()
    {
-       isPlayerTurn = true;
+       
        player.GetComponent<PlayerController>().enabled = true;
     //    enemy.GetComponent<EnemyController>().enabled = false;
    }
