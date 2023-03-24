@@ -24,7 +24,7 @@ public class TurnManager : MonoBehaviour
    private void Update()
    {
         
-       if (isPlayerTurn && !(player.GetComponent<PlayerController>().isTurnComplete))
+       if (player != null && isPlayerTurn && !(player.GetComponent<PlayerController>().isTurnComplete))
        {
             // player's turn
 
@@ -34,14 +34,17 @@ public class TurnManager : MonoBehaviour
            player.GetComponent<PlayerController>().isTurnComplete = false;
        }
         
-       else if (!isPlayerTurn && enemy.GetComponent<EnemyController>().isAlive && !(enemy.GetComponent<EnemyController>().isTurnComplete))
+       else if (enemy != null && !isPlayerTurn && !(enemy.GetComponent<EnemyController>().isTurnComplete))
        {
+            
             // enemy's turn
 
-           isPlayerTurn = true;
-        //    enemy.GetComponent<EnemyController>().enabled = false;
-        //    player.GetComponent<PlayerController>().enabled = true;
-           enemy.GetComponent<EnemyController>().isTurnComplete = true;
+            isPlayerTurn = true;
+            //    enemy.GetComponent<EnemyController>().enabled = false;
+            //    player.GetComponent<PlayerController>().enabled = true;
+            enemy.GetComponent<EnemyController>().isTurnComplete = true;
+          
+       
        }
    }
 }
