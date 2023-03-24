@@ -8,12 +8,6 @@ public class TurnManager : MonoBehaviour
 
     
    [SerializeField] GameObject enemy;
-
-
-   
-
-    
-    
    private bool isPlayerTurn;
 
     private void Awake()
@@ -24,7 +18,7 @@ public class TurnManager : MonoBehaviour
    {
        
        player.GetComponent<PlayerController>().enabled = true;
-    //    enemy.GetComponent<EnemyController>().enabled = false;
+       enemy.GetComponent<EnemyController>().enabled = false;
    }
 
    private void Update()
@@ -35,12 +29,12 @@ public class TurnManager : MonoBehaviour
            enemy.GetComponent<EnemyController>().enabled = true;
            player.GetComponent<PlayerController>().isTurnComplete = false;
        }
-    //    else if (!isPlayerTurn && enemy.GetComponent<EnemyController>().isTurnComplete)
-    //    {
-    //        isPlayerTurn = true;
-    //        enemy.GetComponent<EnemyController>().enabled = false;
-    //        player.GetComponent<PlayerController>().enabled = true;
-    //        enemy.GetComponent<EnemyController>().isTurnComplete = false;
-    //    }
+       else if (!isPlayerTurn && enemy.GetComponent<EnemyController>().isTurnComplete)
+       {
+           isPlayerTurn = true;
+           enemy.GetComponent<EnemyController>().enabled = false;
+           player.GetComponent<PlayerController>().enabled = true;
+           enemy.GetComponent<EnemyController>().isTurnComplete = false;
+       }
    }
 }

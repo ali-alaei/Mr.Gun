@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject firePoint;
     [SerializeField] float shootingForce = 10.0f;
     private float currentAngle;
-
     public bool isTurnComplete;
     
 
@@ -50,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         isTurnComplete = false;
     }
-    
+
     void Start()
     {
         
