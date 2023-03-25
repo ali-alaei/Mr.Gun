@@ -291,6 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2537d0a73264bbf80700b678b88fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTurnComplete: 0
+  isAlive: 0
 --- !u!4 &798133351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3132718184826124575, guid: b8d2256cfc47a46b984e364e68f0ed0c, type: 3}
@@ -614,7 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 170151666}
-  enemy: {fileID: 0}
+  enemy: {fileID: 667197774}
 --- !u!1001 &742286443484619014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -911,25 +913,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.762454, y: 2.8560445}
   m_EdgeRadius: 0
---- !u!114 &3132718183840137655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3132718183840137651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8922a800f0b54e3587d75252f7e6a1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 0.5
-  rotationAngle: 40
-  gun: {fileID: 0}
-  bulletPrefab: {fileID: 6918064796198299809, guid: b4540547bf90e486e9f0dcf54b09bfad, type: 3}
-  firePoint: {fileID: 1522936148}
-  shootingForce: 800
-  isTurnComplete: 0
 --- !u!4 &3132718183840137656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3911096478821632652, guid: b8d2256cfc47a46b984e364e68f0ed0c, type: 3}
