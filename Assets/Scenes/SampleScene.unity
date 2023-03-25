@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTurnComplete: 0
-  isAlive: 0
+  gun: {fileID: 742286443484619015}
 --- !u!4 &798133351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3132718184826124575, guid: b8d2256cfc47a46b984e364e68f0ed0c, type: 3}
