@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
+    
+    
    [SerializeField] GameObject player;
 
     
    [SerializeField] GameObject enemy;
+
    private bool isPlayerTurn;
 
     private void Awake()
     {
         isPlayerTurn = true;
     }
+
    private void Start()
    {
        
@@ -23,9 +27,11 @@ public class TurnManager : MonoBehaviour
 
    private void Update()
    {
-        
+    
+       
        if (player != null && isPlayerTurn && !(player.GetComponent<PlayerController>().isTurnComplete))
        {
+            
             // player's turn
             Debug.Log("Player's turn");
             isPlayerTurn = false;

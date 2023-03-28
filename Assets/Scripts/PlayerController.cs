@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     
-    
+
+
     [SerializeField] float rotationSpeed = 100.0f;
     [SerializeField] float rotationAngle = 30.0f;
     [SerializeField] GameObject gun;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     void GunRotator()
     {
+        
         float normalizedTime = Mathf.PingPong(Time.time * rotationSpeed, 1.0f);
         currentAngle = Mathf.Lerp(0.0f, rotationAngle, normalizedTime);
         gun.transform.rotation = Quaternion.Euler(0, 180, currentAngle);

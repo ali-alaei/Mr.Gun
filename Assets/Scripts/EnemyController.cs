@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     
     
+    
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
