@@ -28,9 +28,9 @@ public class TurnManager : MonoBehaviour
             isPlayerTurn = false; 
             enemy.GetComponent<EnemyController>().enabled = true;
 
-           
+            
             player.GetComponent<PlayerController>().isTurnComplete = false;
-            //player.GetComponent<PlayerController>().enabled = false;
+            
         }
 
         // if it was enemy's turn, switch to player's turn

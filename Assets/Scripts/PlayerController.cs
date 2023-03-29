@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float shootingForce = 10.0f;
     private float currentAngle;
     public bool isTurnComplete = false;
+    
 
 
     void Start()
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(gun.transform.right * shootingForce);
             isTurnComplete = true;
-            
+           
         }
 
     }
