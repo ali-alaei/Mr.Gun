@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
 {
     
     public bool isTurnComplete = false; 
-    
+    public bool isEnemyAlive;
     [SerializeField] GameObject gun;
     [SerializeField] GameObject bulletPrefab;
     
@@ -18,23 +18,23 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            gameObject.SetActive(false);
-           
+            Destroy(gameObject);
+            isEnemyAlive = false;
         }
     }
 
     private void Shoot()
     {
 
-        isTurnComplete = true;
+        Debug.Log("Enemy Shoot");
 
 
     }
     // Start is called before the first frame update
     void Start()
     {
-    
-        
+        isTurnComplete = false;
+        isEnemyAlive = true;
         
         
     }
@@ -42,8 +42,11 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Enemy's turn");
-
+        if (!isTurnComplete && isEnemyAlive)
+        {
+            Shoot();
+            isTurnComplete = true;
+        }
 
         
         
