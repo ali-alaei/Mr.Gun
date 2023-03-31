@@ -10,8 +10,32 @@ public class EnemyController : MonoBehaviour
     
     [SerializeField] GameObject gun;
     [SerializeField] GameObject bulletPrefab;
+    [SerializeField] GameObject firePoint;
+    public float bulletSpeed = 10f;
+    public float fireRate = 2f;
+    private float nextFire = 0.0f;
+    private Transform playerTransform;
+    private Rigidbody2D rb;
+    Vector2 directionTowardPlayer;
+
+
+    void Start()
+    {
+        
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        Debug.Log("player position: " + playerTransform.position);
+        Debug.Log("enemy position: " + playerTransform.position);
+
+        directionTowardPlayer = (playerTransform.position - transform.position).normalized;
+        Debug.Log("directionTowardPlayer: " + directionTowardPlayer);
+    }
+
     
-    
+    void Update()
+    {
+        Debug.Log("Enemy's turn");
+        Shoot();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -24,27 +48,15 @@ public class EnemyController : MonoBehaviour
 
     private void Shoot()
     {
+        GameObject bullet = Instantiate(bulletPrefab,
+            firePoint.transform.position, Quaternion.identity);
+
+        // set the bullet's velocity and direction
+        bullet.GetComponent<Rigidbody2D>().velocity = directionTowardPlayer * bulletSpeed;
 
         isTurnComplete = true;
 
 
     }
-    // Start is called before the first frame update
-    void Start()
-    {
     
-        
-        
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log("Enemy's turn");
-
-
-        
-        
-    }
 }

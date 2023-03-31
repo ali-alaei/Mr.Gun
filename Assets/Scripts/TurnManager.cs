@@ -30,6 +30,7 @@ public class TurnManager : MonoBehaviour
 
             
             player.GetComponent<PlayerController>().isTurnComplete = false;
+
             
         }
 
@@ -46,55 +47,3 @@ public class TurnManager : MonoBehaviour
     }
 }
 
-
-//public class TurnManager : MonoBehaviour
-//{
-    
-    
-//   [SerializeField] GameObject player;
-
-    
-//   [SerializeField] GameObject enemy;
-
-//   private bool isPlayerTurn;
-
-//    private void Awake()
-//    {
-//        isPlayerTurn = true;
-//    }
-
-//   private void Start()
-//   {
-       
-    
-//   }
-
-//   private void Update()
-//   {
-    
-       
-//       if (player != null && isPlayerTurn && !(player.GetComponent<PlayerController>().isTurnComplete))
-//       {
-            
-//            // player's turn
-//            Debug.Log("Player's turn");
-//            isPlayerTurn = false;
-//        //    player.GetComponent<PlayerController>().isTurnComplete = true;
-//        //    enemy.GetComponent<EnemyController>().enabled = true;
-//            player.GetComponent<PlayerController>().isTurnComplete = false;
-//       }
-        
-//       else if (enemy != null && !isPlayerTurn && !(enemy.GetComponent<EnemyController>().isTurnComplete))
-//       {
-            
-//            // enemy's turn
-//            Debug.Log("Enemy's turn");
-//            isPlayerTurn = true;
-//            //    enemy.GetComponent<EnemyController>().enabled = false;
-//            //    player.GetComponent<PlayerController>().enabled = true;
-//            enemy.GetComponent<EnemyController>().isTurnComplete = true;
-          
-       
-//       }
-//   }
-//}

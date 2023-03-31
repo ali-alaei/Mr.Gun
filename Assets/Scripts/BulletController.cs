@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    
+
     public float lifetime = 2f;
 
     void Start()
@@ -17,10 +17,10 @@ public class BulletController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") ||
             collision.gameObject.CompareTag("Enemy"))
         {
-            
+
             Destroy(gameObject); // destroy bullet on collision
         }
     }
-    
+
 
 }
