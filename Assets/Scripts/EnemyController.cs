@@ -23,11 +23,11 @@ public class EnemyController : MonoBehaviour
     {
         
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        Debug.Log("player position: " + playerTransform.position);
-        Debug.Log("enemy position: " + playerTransform.position);
+        //Debug.Log("player position: " + playerTransform.position);
+        //Debug.Log("enemy position: " + playerTransform.position);
 
         directionTowardPlayer = (playerTransform.position - transform.position).normalized;
-        Debug.Log("directionTowardPlayer: " + directionTowardPlayer);
+        //Debug.Log("directionTowardPlayer: " + directionTowardPlayer);
     }
 
     
@@ -48,6 +48,7 @@ public class EnemyController : MonoBehaviour
 
     private void Shoot()
     {
+        
         GameObject bullet = Instantiate(bulletPrefab,
             firePoint.transform.position, Quaternion.identity);
 

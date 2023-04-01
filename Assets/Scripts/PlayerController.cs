@@ -55,8 +55,10 @@ public class PlayerController : MonoBehaviour
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(gun.transform.right * shootingForce);
             isTurnComplete = true;
-           
+            
+
         }
+        
 
     }
 
