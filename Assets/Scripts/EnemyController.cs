@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject firePoint;
     public float bulletSpeed = 10f;
     public float fireRate = 2f;
-    private float nextFire = 0.0f;
+    //private float nextFire = 0.0f;
     private Transform playerTransform;
     private Rigidbody2D rb;
     Vector2 directionTowardPlayer;
@@ -33,8 +33,13 @@ public class EnemyController : MonoBehaviour
     
     void Update()
     {
-        Debug.Log("Enemy's turn");
-        Shoot();
+        if (!isTurnComplete)
+        {
+            Debug.Log("Enemy's turn");
+            Shoot();
+
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
