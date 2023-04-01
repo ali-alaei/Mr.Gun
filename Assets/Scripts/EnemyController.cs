@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject firePoint;
     public float bulletSpeed = 10f;
-    public float fireRate = 2f;
+    //public float fireRate = 2f;
     //private float nextFire = 0.0f;
     private Transform playerTransform;
     private Rigidbody2D rb;

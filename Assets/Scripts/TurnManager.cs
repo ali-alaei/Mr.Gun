@@ -22,7 +22,7 @@ public class TurnManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(2f); // wait one frame
+            yield return new WaitForSeconds(3f); 
 
             if (isPlayerTurn)
             {
