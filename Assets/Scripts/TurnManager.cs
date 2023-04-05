@@ -18,29 +18,35 @@ public class TurnManager : MonoBehaviour
         StartCoroutine(TurnCoroutine());
     }
 
+   
+
     private IEnumerator TurnCoroutine()
     {
         while (true)
         {
-            yield return new WaitForSeconds(3f); 
+            yield return new WaitForSeconds(3f);
+            //Debug.Log("TurnCoroutine");
 
             if (isPlayerTurn)
             {
+                //Debug.Log("player's turn");
                 // player's turn
                 if (player.activeSelf && player.GetComponent<PlayerController>().isTurnComplete)
                 {
-                    Debug.Log("Transitioning to enemy's turn");
+                    //Debug.Log("Transitioning to enemy's turn");
                     isPlayerTurn = false;
                     enemy.GetComponent<EnemyController>().enabled = true;
                     player.GetComponent<PlayerController>().isTurnComplete = false;
                 }
             }
+
             else
             {
+                //Debug.Log("enemy's turn");
                 // enemy's turn
                 if (enemy.activeSelf && enemy.GetComponent<EnemyController>().isTurnComplete)
                 {
-                    Debug.Log("Transitioning to player's turn");
+                    //Debug.Log("Transitioning to player's turn");
                     isPlayerTurn = true;
                     enemy.GetComponent<EnemyController>().enabled = false;
                     player.GetComponent<PlayerController>().enabled = true;

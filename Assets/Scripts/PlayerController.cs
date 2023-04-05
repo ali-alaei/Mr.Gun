@@ -11,23 +11,62 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject firePoint;
     [SerializeField] float shootingForce = 10.0f;
+    [SerializeField] float playerMoveSpeed = 2.0f;
     private float currentAngle;
     public bool isTurnComplete = false;
+    private GameObject enemy;
+    private Vector2 enemyLastPos;
     
 
 
     void Start()
     {
-
+        
         ResetGunZRotationAxis();
     }
 
     void Update()
     {
-        Debug.Log("player's turn");
+        enemy = GameObject.Find("Enemy");
+
+        if (enemy != null)
+        {
+            Debug.Log("enemy is alive");
+            enemyLastPos = enemy.transform.position;
+
+        }
+        else
+        {
+            Debug.Log("enemy is dead");
+            StartCoroutine(MoveToNextPosition(enemyLastPos, playerMoveSpeed));
+        } 
+        
+        //Debug.Log("player's turn");
         GunRotator();
         BulletShooter();
     }
+
+    IEnumerator MoveToNextPosition(Vector2 nextPosition, float moveSpeed)
+    {
+        // Disable player control during movement
+        GetComponent<PlayerController>().enabled = false;
+
+        // Calculate the distance to the target position
+        float distance = Vector2.Distance(transform.position, nextPosition);
+
+        // Move the player towards the target position until they reach it
+        while (distance > 0.1f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, nextPosition, moveSpeed * Time.deltaTime);
+            distance = Vector3.Distance(transform.position, nextPosition);
+            yield return null;
+            
+        }
+
+        // Re-enable player control after movement is complete
+        GetComponent<PlayerController>().enabled = true;
+    }
+
 
 
     void GunRotator()
@@ -45,20 +84,14 @@ public class PlayerController : MonoBehaviour
 
     void BulletShooter()
     {
-        
-        
         if (Input.GetKeyDown(KeyCode.Space) && !isTurnComplete)
         {
-      
             GameObject bullet = Instantiate(bulletPrefab,
                 firePoint.transform.position, firePoint.transform.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(gun.transform.right * shootingForce);
             isTurnComplete = true;
-            
-
         }
-        
 
     }
 

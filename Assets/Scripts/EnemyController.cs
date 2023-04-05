@@ -12,17 +12,16 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject firePoint;
     public float bulletSpeed = 10f;
-    //public float fireRate = 2f;
-    //private float nextFire = 0.0f;
     private Transform playerTransform;
-    private Rigidbody2D rb;
     Vector2 directionTowardPlayer;
+    public bool isDead = false;
 
 
     void Start()
     {
         
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        Debug.Log("Player Position:" + playerTransform.position);
         //Debug.Log("player position: " + playerTransform.position);
         //Debug.Log("enemy position: " + playerTransform.position);
 
@@ -35,11 +34,9 @@ public class EnemyController : MonoBehaviour
     {
         if (!isTurnComplete)
         {
-            Debug.Log("Enemy's turn");
+            //Debug.Log("Enemy's turn");
             Shoot();
-
-        }
-        
+        }  
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -47,6 +44,7 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             gameObject.SetActive(false);
+            isDead = true; 
            
         }
     }
@@ -61,7 +59,6 @@ public class EnemyController : MonoBehaviour
         bullet.GetComponent<Rigidbody2D>().velocity = directionTowardPlayer * bulletSpeed;
 
         isTurnComplete = true;
-
 
     }
     
