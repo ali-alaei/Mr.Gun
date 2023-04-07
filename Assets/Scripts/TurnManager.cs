@@ -25,11 +25,9 @@ public class TurnManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3f);
-            //Debug.Log("TurnCoroutine");
 
             if (isPlayerTurn)
             {
-                //Debug.Log("player's turn");
                 // player's turn
                 if (player.activeSelf && player.GetComponent<PlayerController>().isTurnComplete)
                 {
@@ -42,7 +40,6 @@ public class TurnManager : MonoBehaviour
 
             else
             {
-                //Debug.Log("enemy's turn");
                 // enemy's turn
                 if (enemy.activeSelf && enemy.GetComponent<EnemyController>().isTurnComplete)
                 {

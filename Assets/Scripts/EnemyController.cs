@@ -14,38 +14,41 @@ public class EnemyController : MonoBehaviour
     public float bulletSpeed = 10f;
     private Transform playerTransform;
     Vector2 directionTowardPlayer;
-    public bool isDead = false;
+    
 
 
     void Start()
     {
-        
+
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Debug.Log("Player Position:" + playerTransform.position);
-        //Debug.Log("player position: " + playerTransform.position);
-        //Debug.Log("enemy position: " + playerTransform.position);
-
         directionTowardPlayer = (playerTransform.position - transform.position).normalized;
-        //Debug.Log("directionTowardPlayer: " + directionTowardPlayer);
+
     }
 
     
     void Update()
-    {
+    {        
+        
         if (!isTurnComplete)
         {
-            //Debug.Log("Enemy's turn");
+
             Shoot();
-        }  
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            gameObject.SetActive(false);
-            isDead = true; 
-           
+            //gameObject.SetActive(false);
+            //gameObject.transform.position = new Vector3(5f, 4.88f, 0f);
+            //gameObject.SetActive(true);
+
+            Destroy(gameObject);
+            
+
         }
     }
 

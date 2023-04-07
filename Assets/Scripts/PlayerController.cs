@@ -17,12 +17,10 @@ public class PlayerController : MonoBehaviour
     private GameObject enemy;
     private Vector2 enemyLastPos;
     
-
-
     void Start()
     {
         
-        ResetGunZRotationAxis();
+        //ResetGunZRotationAxis();
     }
 
     void Update()
@@ -35,13 +33,17 @@ public class PlayerController : MonoBehaviour
             enemyLastPos = enemy.transform.position;
 
         }
-        else
+        else //enemy is dead
         {
             Debug.Log("enemy is dead");
+
             StartCoroutine(MoveToNextPosition(enemyLastPos, playerMoveSpeed));
-        } 
+            //StopCoroutine(MoveToNextPosition(enemyLastPos, playerMoveSpeed));
+            //MoveToNextPosition(enemyLastPos, playerMoveSpeed);
+        }
+
         
-        //Debug.Log("player's turn");
+        
         GunRotator();
         BulletShooter();
     }
@@ -57,14 +59,22 @@ public class PlayerController : MonoBehaviour
         // Move the player towards the target position until they reach it
         while (distance > 0.1f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, nextPosition, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position,
+                nextPosition, moveSpeed * Time.deltaTime);
             distance = Vector3.Distance(transform.position, nextPosition);
             yield return null;
-            
+            //yield return new WaitForSeconds(0.5f);
+
         }
 
         // Re-enable player control after movement is complete
         GetComponent<PlayerController>().enabled = true;
+
+        // code to flip the player when moves to the next platform
+        // uncomment it when enemy generates properly
+
+        //Debug.Log("flipping player");
+        //gameObject.transform.Rotate(0, 180f, 0);
     }
 
 
