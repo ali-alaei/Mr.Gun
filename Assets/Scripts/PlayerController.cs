@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private float currentAngle;
     public bool isTurnComplete = false;
     private GameObject enemy;
-    private Vector2 enemyLastPos;
+    private Vector2 lastEnemyPosition;
     
     void Start()
     {
@@ -27,17 +27,17 @@ public class PlayerController : MonoBehaviour
     {
         enemy = GameObject.FindWithTag("Enemy");
 
-        if (enemy != null)
+        if (enemy != null) //enemy is alive
         {
             //Debug.Log("enemy is alive");
-            enemyLastPos = enemy.transform.position;
+            lastEnemyPosition = enemy.transform.position;
 
         }
         else //enemy is dead
         {
             //Debug.Log("enemy is dead");
 
-            StartCoroutine(MoveToNextPosition(enemyLastPos, playerMoveSpeed));
+            StartCoroutine(MoveToNextPosition(lastEnemyPosition, playerMoveSpeed));
             //StopCoroutine(MoveToNextPosition(enemyLastPos, playerMoveSpeed));
             //MoveToNextPosition(enemyLastPos, playerMoveSpeed);
         }
@@ -96,11 +96,21 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && !isTurnComplete)
         {
+            
             GameObject bullet = Instantiate(bulletPrefab,
                 firePoint.transform.position, firePoint.transform.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(gun.transform.right * shootingForce);
-            isTurnComplete = true;
+            if (enemy.GetComponent<EnemyController>().playerKilledEnemy)
+            {
+                isTurnComplete = false;
+
+            }
+            else
+            {
+                isTurnComplete = true;
+            }
+            
         }
 
     }

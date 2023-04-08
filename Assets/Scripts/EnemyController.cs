@@ -5,21 +5,23 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    
-    public bool isTurnComplete = false; 
-    
+
     [SerializeField] GameObject gun;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject firePoint;
+
+    public bool isTurnComplete = false;
+    public bool playerKilledEnemy = false;
     public float bulletSpeed = 10f;
     private Transform playerTransform;
+    
     Vector2 directionTowardPlayer;
     
 
 
     void Start()
     {
-
+        
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         //Debug.Log("Player Position:" + playerTransform.position);
         directionTowardPlayer = (playerTransform.position - transform.position).normalized;
@@ -32,7 +34,7 @@ public class EnemyController : MonoBehaviour
         
         if (!isTurnComplete)
         {
-            Debug.Log("Enemy has shot");
+            //Debug.Log("Enemy has shot");
             Shoot();
 
         }
@@ -46,8 +48,11 @@ public class EnemyController : MonoBehaviour
             //gameObject.SetActive(false);
             //gameObject.transform.position = new Vector3(5f, 4.88f, 0f);
             //gameObject.SetActive(true);
-            Debug.Log("Enemy got shot");
+            //Debug.Log("Enemy got shot");
             Destroy(gameObject);
+            playerKilledEnemy = true;
+
+
 
 
         }
@@ -56,7 +61,7 @@ public class EnemyController : MonoBehaviour
 
     private void Shoot()
     {
-        
+
         GameObject bullet = Instantiate(bulletPrefab,
             firePoint.transform.position, Quaternion.identity);
 

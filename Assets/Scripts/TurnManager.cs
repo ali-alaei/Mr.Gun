@@ -2,87 +2,165 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TurnManager : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    //[SerializeField] GameObject enemy;
-
-    private GameObject enemy = null;
-
+    private GameObject currentEnemy;
     private bool isPlayerTurn = true;
-
-
-    private void Awake()
-    {
-        enemy = GameObject.FindWithTag("Enemy");
-        player.GetComponent<PlayerController>().enabled = true;
-
-    }
+    private bool enemySpawned = false;
+    
 
     private void Start()
     {
-
-        // Commented in the case of the first enemy is also being instantiated and enables is set inside EnemySpawner.
-        //enemy.GetComponent<EnemyController>().enabled = false;
-
-        //Debug.Log("TurnManager has started");
-
         StartCoroutine(TurnCoroutine());
     }
 
     private void Update()
     {
-        
-        if (enemy == null)
+        if (!enemySpawned)
         {
-            enemy = GameObject.FindWithTag("Enemy");
+            currentEnemy = GameObject.FindWithTag("Enemy");
+            if (currentEnemy != null)
+            {
+                currentEnemy.GetComponent<EnemyController>().enabled = false;
+                enemySpawned = true;
+            }
         }
     }
-        
-        
-
-
 
     private IEnumerator TurnCoroutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(3f);
-            
 
-            if (isPlayerTurn)
+            if (isPlayerTurn) // player's turn
             {
+                Debug.Log("player's turn");
 
-
-                Debug.Log("enemy object = " + enemy);
-                Debug.Log("player object = " + player);
-
-                //Debug.Log("player's turn");
-                // player's turn
-                if (player != null && enemy != null &&
+                // switching to enemy
+                if (player != null && currentEnemy != null &&
                     player.GetComponent<PlayerController>().isTurnComplete)
                 {
-                    //Debug.Log("Transitioning to enemy's turn");
                     isPlayerTurn = false;
-                    enemy.GetComponent<EnemyController>().enabled = true;
+
+                    // keep player's turn if enemy died
+                    if (currentEnemy.GetComponent<EnemyController>().playerKilledEnemy)
+                    {
+                        currentEnemy.GetComponent<EnemyController>().playerKilledEnemy = false;
+                    }
+                    else
+                    {
+                        currentEnemy.GetComponent<EnemyController>().enabled = true;
+                    }
+
                     player.GetComponent<PlayerController>().isTurnComplete = false;
+                    Debug.Log("switched to enemy");
+                    
                 }
             }
-
-            else
+            else // enemy's turn
             {
-                //Debug.Log("enemy's turn");
-                // enemy's turn
-                if (player != null && enemy != null &&
-                    enemy.GetComponent<EnemyController>().isTurnComplete)
+                Debug.Log("enemy's turn");
+
+                // switching to player
+                if (player != null && currentEnemy != null &&
+                    currentEnemy.GetComponent<EnemyController>().isTurnComplete)
                 {
-                    //Debug.Log("Transitioning to player's turn");
                     isPlayerTurn = true;
-                    enemy.GetComponent<EnemyController>().enabled = false;
+                    currentEnemy.GetComponent<EnemyController>().enabled = false;
                     player.GetComponent<PlayerController>().enabled = true;
-                    enemy.GetComponent<EnemyController>().isTurnComplete = false;
+                    currentEnemy.GetComponent<EnemyController>().isTurnComplete = false;
+                    Debug.Log("switched to player");
                 }
             }
         }
     }
+
+    
 }
+
+
+
+//public class TurnManager : MonoBehaviour
+//{
+//    [SerializeField] GameObject player;
+//    //[SerializeField] GameObject enemy;
+
+//    private GameObject currentEnemy = null;
+
+//    private bool isPlayerTurn = true;
+
+
+//    private void Start()
+//    {
+//        //enemy = GameObject.FindWithTag("Enemy");
+//        player.GetComponent<PlayerController>().enabled = true;
+
+//        // Commented in the case of the first enemy is also being instantiated and enables is set inside EnemySpawner.
+//        //enemy.GetComponent<EnemyController>().enabled = false;
+
+//        //Debug.Log("TurnManager has started");
+
+//        StartCoroutine(TurnCoroutine());
+//    }
+
+//    private void Update()
+//    {
+
+//        if (currentEnemy == null)
+//        {
+//            currentEnemy = GameObject.FindWithTag("Enemy");
+//            //Debug.Log("enemy name: " + enemy.name);
+//        }
+//    }
+
+
+
+
+
+//    private IEnumerator TurnCoroutine()
+//    {
+//        while (true)
+//        {
+//            yield return new WaitForSeconds(3f);
+
+//            if (isPlayerTurn)
+//            {
+
+//                //Debug.Log("enemy object = " + enemy);
+//                //Debug.Log("player object = " + player);
+
+//                Debug.Log("player's turn");
+//                // player is done, switching to enemy
+//                if (player != null && currentEnemy != null &&
+//                    player.GetComponent<PlayerController>().isTurnComplete)
+//                {
+//                    Debug.Log("switched to enemy");
+//                    isPlayerTurn = false;
+//                    currentEnemy.GetComponent<EnemyController>().enabled = true;
+
+//                    player.GetComponent<PlayerController>().isTurnComplete = false;
+//                }
+//            }
+
+//            else
+//            {
+//                Debug.Log("enemy's turn");
+//                // enemy is done, switching to player
+//                if (player != null && currentEnemy != null &&
+//                    currentEnemy.GetComponent<EnemyController>().isTurnComplete)
+//                {
+//                    Debug.Log("switched to player");
+//                    isPlayerTurn = true;
+//                    currentEnemy.GetComponent<EnemyController>().enabled = false;
+
+
+//                    player.GetComponent<PlayerController>().enabled = true;
+//                    currentEnemy.GetComponent<EnemyController>().isTurnComplete = false;
+//                }
+//            }
+//        }
+//    }
+//}
