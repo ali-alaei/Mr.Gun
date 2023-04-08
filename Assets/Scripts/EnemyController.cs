@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     {
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        Debug.Log("Player Position:" + playerTransform.position);
+        //Debug.Log("Player Position:" + playerTransform.position);
         directionTowardPlayer = (playerTransform.position - transform.position).normalized;
 
     }
@@ -32,25 +32,27 @@ public class EnemyController : MonoBehaviour
         
         if (!isTurnComplete)
         {
-
+            Debug.Log("Enemy has shot");
             Shoot();
+
         }
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Bullet"))
         {
             //gameObject.SetActive(false);
             //gameObject.transform.position = new Vector3(5f, 4.88f, 0f);
             //gameObject.SetActive(true);
-
+            Debug.Log("Enemy got shot");
             Destroy(gameObject);
-            
+
 
         }
     }
+
 
     private void Shoot()
     {

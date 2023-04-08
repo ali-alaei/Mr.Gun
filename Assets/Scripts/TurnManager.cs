@@ -5,31 +5,62 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    [SerializeField] GameObject enemy;
+    //[SerializeField] GameObject enemy;
+
+    private GameObject enemy = null;
 
     private bool isPlayerTurn = true;
 
+
+    private void Awake()
+    {
+        enemy = GameObject.FindWithTag("Enemy");
+        player.GetComponent<PlayerController>().enabled = true;
+
+    }
+
     private void Start()
     {
-        player.GetComponent<PlayerController>().enabled = true;
-        enemy.GetComponent<EnemyController>().enabled = false;
 
-        // start the turn coroutine
+        // Commented in the case of the first enemy is also being instantiated and enables is set inside EnemySpawner.
+        //enemy.GetComponent<EnemyController>().enabled = false;
+
+        //Debug.Log("TurnManager has started");
+
         StartCoroutine(TurnCoroutine());
     }
 
-   
+    private void Update()
+    {
+        
+        if (enemy == null)
+        {
+            enemy = GameObject.FindWithTag("Enemy");
+        }
+    }
+        
+        
+
+
 
     private IEnumerator TurnCoroutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(3f);
+            
 
             if (isPlayerTurn)
             {
+
+
+                Debug.Log("enemy object = " + enemy);
+                Debug.Log("player object = " + player);
+
+                //Debug.Log("player's turn");
                 // player's turn
-                if (player.activeSelf && player.GetComponent<PlayerController>().isTurnComplete)
+                if (player != null && enemy != null &&
+                    player.GetComponent<PlayerController>().isTurnComplete)
                 {
                     //Debug.Log("Transitioning to enemy's turn");
                     isPlayerTurn = false;
@@ -40,8 +71,10 @@ public class TurnManager : MonoBehaviour
 
             else
             {
+                //Debug.Log("enemy's turn");
                 // enemy's turn
-                if (enemy.activeSelf && enemy.GetComponent<EnemyController>().isTurnComplete)
+                if (player != null && enemy != null &&
+                    enemy.GetComponent<EnemyController>().isTurnComplete)
                 {
                     //Debug.Log("Transitioning to player's turn");
                     isPlayerTurn = true;

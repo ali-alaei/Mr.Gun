@@ -19,23 +19,23 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
-        
-        //ResetGunZRotationAxis();
+
+        ResetGunZRotationAxis();
     }
 
     void Update()
     {
-        enemy = GameObject.Find("Enemy");
+        enemy = GameObject.FindWithTag("Enemy");
 
         if (enemy != null)
         {
-            Debug.Log("enemy is alive");
+            //Debug.Log("enemy is alive");
             enemyLastPos = enemy.transform.position;
 
         }
         else //enemy is dead
         {
-            Debug.Log("enemy is dead");
+            //Debug.Log("enemy is dead");
 
             StartCoroutine(MoveToNextPosition(enemyLastPos, playerMoveSpeed));
             //StopCoroutine(MoveToNextPosition(enemyLastPos, playerMoveSpeed));
@@ -109,7 +109,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
 
         }
     }
