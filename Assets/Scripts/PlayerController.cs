@@ -24,45 +24,57 @@ public class PlayerController : MonoBehaviour
         ResetGunZRotationAxis();
     }
 
+    private void OnEnable()
+    {
+        Actions.OnEnemyKilled += MovePlayer;
+    }
+
+    private void OnDisable()
+    {
+        Actions.OnEnemyKilled -= MovePlayer;
+    }
+
     void Update()
     {
-        enemy = GameObject.FindWithTag("Enemy");
 
-        if (enemy != null) //enemy is alive
-        {
-            //Debug.Log("enemy is alive");
-            lastEnemyPosition = enemy.transform.position;
-
-        }
-        else //enemy is dead
-        {
-            //Debug.Log("enemy is dead");
-
-            StartCoroutine(MoveToNextPosition(lastEnemyPosition, playerMoveSpeed));
-            //StopCoroutine(MoveToNextPosition(enemyLastPos, playerMoveSpeed));
-            //MoveToNextPosition(enemyLastPos, playerMoveSpeed);
-        }
-
-        
-        
+        FindLatestEnemyPosition();
         GunRotator();
         BulletShooter();
     }
 
-    IEnumerator MoveToNextPosition(Vector2 nextPosition, float moveSpeed)
+    void FindLatestEnemyPosition()
+    {
+
+        enemy = GameObject.FindWithTag("Enemy");
+        if (enemy != null)
+        {
+            lastEnemyPosition = enemy.transform.position;
+        }
+        
+
+    }
+
+    void MovePlayer()
+    {
+
+        StartCoroutine(MoveToNextPosition());
+
+    }
+
+    IEnumerator MoveToNextPosition()
     {
         // Disable player control during movement
         GetComponent<PlayerController>().enabled = false;
 
         // Calculate the distance to the target position
-        float distance = Vector2.Distance(transform.position, nextPosition);
+        float distance = Vector2.Distance(transform.position, lastEnemyPosition);
 
         // Move the player towards the target position until they reach it
         while (distance > 0.1f)
         {
             transform.position = Vector2.MoveTowards(transform.position,
-                nextPosition, moveSpeed * Time.deltaTime);
-            distance = Vector3.Distance(transform.position, nextPosition);
+                lastEnemyPosition, playerMoveSpeed * Time.deltaTime);
+            distance = Vector3.Distance(transform.position, lastEnemyPosition);
             yield return null;
             //yield return new WaitForSeconds(0.5f);
 

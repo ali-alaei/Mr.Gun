@@ -17,11 +17,9 @@ public class EnemyCollisionController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            //gameObject.SetActive(false);
-            //gameObject.transform.position = new Vector3(5f, 4.88f, 0f);
-            //gameObject.SetActive(true);
-            //Debug.Log("Enemy got shot");
+           
             isDead = true;
+            Actions.OnEnemyKilled?.Invoke();
             Destroy(gameObject);
             PlayerController.hasShot = false;
             
