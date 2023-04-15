@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] List<GameObject> enemyPositions;
     [SerializeField] List<GameObject> enemiesPrefabs;
+    
     private GameObject currentEnemy = null;
     private int enemySpawnerIndex = 0;
 
@@ -22,11 +23,11 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
 
-        GenerateEnemy();
+        SpawnEnemy();
     }
 
 
-    void GenerateEnemy()
+    public void SpawnEnemy()
     {
 
         while (enemySpawnerIndex < enemiesPrefabs.Count &&
@@ -37,25 +38,32 @@ public class EnemySpawner : MonoBehaviour
             {
                 //Debug.Log("new enemy generated");
                 currentEnemy = Instantiate(enemiesPrefabs[enemySpawnerIndex],
-                    enemyPositions[enemySpawnerIndex].transform.position, Quaternion.Euler(0f, 180f, 0f));
+                    enemyPositions[enemySpawnerIndex].transform.position,
+                    Quaternion.Euler(0f, 180f, 0f));
+                
+                
                 currentEnemy.GetComponent<EnemyController>().enabled = false;
-                // currentEnemy.GetComponent<EnemyController>().canShoot = false;
+                
 
 
             }
-            else
+            else if(enemySpawnerIndex % 2 == 0)
             {
                 //Debug.Log("new enemy generated");
                 currentEnemy = Instantiate(enemiesPrefabs[enemySpawnerIndex],
-                    enemyPositions[enemySpawnerIndex].transform.position, Quaternion.identity);
+                    enemyPositions[enemySpawnerIndex].transform.position,
+                    Quaternion.identity);
+
+
                 currentEnemy.GetComponent<EnemyController>().enabled = false;
-                // currentEnemy.GetComponent<EnemyController>().canShoot = false;
+                
 
             }
 
             enemySpawnerIndex++;
 
         }
+        
 
     }
 }

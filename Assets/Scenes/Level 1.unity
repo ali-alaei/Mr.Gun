@@ -1066,6 +1066,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 170151666}
+    - target: {fileID: 2909710687529829290, guid: dfcdd09cad2774c09a42c786cf7b8f90, type: 3}
+      propertyPath: enemySpawner
+      value: 
+      objectReference: {fileID: 434849491}
     - target: {fileID: 2909710687529829291, guid: dfcdd09cad2774c09a42c786cf7b8f90, type: 3}
       propertyPath: m_RootOrder
       value: 2

@@ -13,12 +13,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float shootingForce = 10.0f;
     [SerializeField] float playerMoveSpeed = 2.0f;
     private float currentAngle;
-    public bool isTurnComplete = false;
+    public static bool hasShot;
     private GameObject enemy;
     private Vector2 lastEnemyPosition;
     
     void Start()
     {
+        hasShot = false;
 
         ResetGunZRotationAxis();
     }
@@ -94,22 +95,24 @@ public class PlayerController : MonoBehaviour
 
     void BulletShooter()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isTurnComplete)
+        if (Input.GetKeyDown(KeyCode.Space) && !hasShot)
         {
             
             GameObject bullet = Instantiate(bulletPrefab,
                 firePoint.transform.position, firePoint.transform.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(gun.transform.right * shootingForce);
-            if (enemy.GetComponent<EnemyController>().playerKilledEnemy)
-            {
-                isTurnComplete = false;
+            //if (enemy.GetComponent<EnemyController>().playerKilledEnemy)
+            //{
+            //    isTurnComplete = false;
 
-            }
-            else
-            {
-                isTurnComplete = true;
-            }
+            //}
+            //else
+            //{
+            //    isTurnComplete = true;
+            //}
+
+            hasShot = true;
             
         }
 

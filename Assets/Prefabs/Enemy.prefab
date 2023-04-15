@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 4830607037692306220}
   - component: {fileID: 3332244083914117615}
   - component: {fileID: 7774654548767993322}
+  - component: {fileID: -7898785711146536797}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -200,12 +201,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2537d0a73264bbf80700b678b88fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTurnComplete: 0
   gun: {fileID: 1935620639343885667}
   bulletPrefab: {fileID: 6918064796198299809, guid: b4540547bf90e486e9f0dcf54b09bfad, type: 3}
   firePoint: {fileID: 7774654548899284589}
-  turnManager: {fileID: 2909710687529829290, guid: dfcdd09cad2774c09a42c786cf7b8f90, type: 3}
+  isTurnComplete: 0
+  isDead: 0
   bulletSpeed: 20
+--- !u!114 &-7898785711146536797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4052932737650689377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f243588a7204c414d81be0d95b488800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7774654548899284589
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-
+    // add a constructor, pass the game object which is the owner and when it collides ask it who is your owner
     public float lifetime = 2f;
 
     void Start()

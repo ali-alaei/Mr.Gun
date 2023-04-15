@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject firePoint;
 
     public bool isTurnComplete = false;
-    public bool playerKilledEnemy = false;
+    
     public float bulletSpeed = 10f;
     private Transform playerTransform;
     
@@ -21,6 +21,8 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("EnemyController Started");
+        
         
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         //Debug.Log("Player Position:" + playerTransform.position);
@@ -41,22 +43,7 @@ public class EnemyController : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            //gameObject.SetActive(false);
-            //gameObject.transform.position = new Vector3(5f, 4.88f, 0f);
-            //gameObject.SetActive(true);
-            //Debug.Log("Enemy got shot");
-            Destroy(gameObject);
-            playerKilledEnemy = true;
-
-
-
-
-        }
-    }
+   
 
 
     private void Shoot()
