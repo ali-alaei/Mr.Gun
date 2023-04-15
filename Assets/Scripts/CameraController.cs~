@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraController : MonoBehaviour
+{
+    [SerializeField] private float yOffset = 5f;
+    [SerializeField] private float moveSpeed = 5f;
+
+    private void Update()
+    {
+        // Calculate the new camera position
+        Vector3 newPos = transform.position + Vector3.up * yOffset;
+
+        // Smoothly move the camera towards the new position
+        transform.position = Vector3.Lerp(transform.position, newPos, moveSpeed * Time.deltaTime);
+    }
+}
+
