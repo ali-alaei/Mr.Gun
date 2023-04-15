@@ -12,7 +12,6 @@ public class TurnManager : MonoBehaviour
 
     private void Awake()
     {
-       
         enemySpawner.SpawnEnemy();
         currentEnemy = GameObject.FindWithTag("Enemy");
         currentEnemy.GetComponent<EnemyController>().enabled = false;

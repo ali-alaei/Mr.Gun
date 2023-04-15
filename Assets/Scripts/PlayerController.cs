@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         hasShot = false;
 
-        ResetGunZRotationAxis();
+        //ResetGunZRotationAxis();
     }
 
     private void OnEnable()
@@ -97,7 +97,13 @@ public class PlayerController : MonoBehaviour
         
         float normalizedTime = Mathf.PingPong(Time.time * rotationSpeed, 1.0f);
         currentAngle = Mathf.Lerp(0.0f, rotationAngle, normalizedTime);
-        gun.transform.rotation = Quaternion.Euler(0, 180, currentAngle);
+
+        Quaternion currentRotation = gun.transform.rotation;
+
+        Quaternion newRotation = Quaternion.Euler(currentRotation.eulerAngles.x,
+            currentRotation.eulerAngles.y, currentAngle);
+
+        gun.transform.rotation = newRotation;
     }
 
     void ResetGunZRotationAxis()
@@ -114,16 +120,7 @@ public class PlayerController : MonoBehaviour
                 firePoint.transform.position, firePoint.transform.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(gun.transform.right * shootingForce);
-            //if (enemy.GetComponent<EnemyController>().playerKilledEnemy)
-            //{
-            //    isTurnComplete = false;
-
-            //}
-            //else
-            //{
-            //    isTurnComplete = true;
-            //}
-
+         
             hasShot = true;
             
         }
@@ -134,7 +131,6 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            //gameObject.SetActive(false);
             Destroy(gameObject);
 
         }
