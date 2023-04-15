@@ -16,22 +16,23 @@ public class PlayerController : MonoBehaviour
     public static bool hasShot;
     private GameObject enemy;
     private Vector2 lastEnemyPosition;
+    private Transform playerTransform;
     
     void Start()
     {
         hasShot = false;
-
-        //ResetGunZRotationAxis();
     }
 
     private void OnEnable()
     {
-        Actions.OnEnemyKilled += MovePlayer;
+        Actions.OnEnemyKilled += Move;
+        
+
     }
 
     private void OnDisable()
     {
-        Actions.OnEnemyKilled -= MovePlayer;
+        Actions.OnEnemyKilled -= Move;
     }
 
     void Update()
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void MovePlayer()
+    void Move()
     {
 
         StartCoroutine(MoveToNextPosition());
@@ -83,13 +84,16 @@ public class PlayerController : MonoBehaviour
         // Re-enable player control after movement is complete
         GetComponent<PlayerController>().enabled = true;
 
-        // code to flip the player when moves to the next platform
-        // uncomment it when enemy generates properly
+        Flip();
 
-        //Debug.Log("flipping player");
-        //gameObject.transform.Rotate(0, 180f, 0);
     }
 
+    private void Flip()
+    {
+        Vector3 newRotation = transform.rotation.eulerAngles;
+        newRotation.y += 180f;
+        transform.rotation = Quaternion.Euler(newRotation);
+    }
 
 
     void GunRotator()
@@ -97,18 +101,17 @@ public class PlayerController : MonoBehaviour
         
         float normalizedTime = Mathf.PingPong(Time.time * rotationSpeed, 1.0f);
         currentAngle = Mathf.Lerp(0.0f, rotationAngle, normalizedTime);
+        //gun.transform.rotation = Quaternion.Euler(0, 0, currentAngle);
 
+        // Get the current rotation of the gun
         Quaternion currentRotation = gun.transform.rotation;
 
+        // Calculate the new rotation around the Z-axis
         Quaternion newRotation = Quaternion.Euler(currentRotation.eulerAngles.x,
             currentRotation.eulerAngles.y, currentAngle);
 
+        // Set the new rotation of the gun
         gun.transform.rotation = newRotation;
-    }
-
-    void ResetGunZRotationAxis()
-    {
-        gun.transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
     void BulletShooter()
