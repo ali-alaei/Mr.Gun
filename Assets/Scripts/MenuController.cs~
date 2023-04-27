@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MeinMenuController : MonoBehaviour
+public class MenuController : MonoBehaviour
 {
+
+
     public void PlayGame()
     {
 
@@ -17,6 +19,7 @@ public class MeinMenuController : MonoBehaviour
     {
 
 
+        Debug.Log("Quit");
 
         Application.Quit();
     }
