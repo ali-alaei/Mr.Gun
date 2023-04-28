@@ -11,20 +11,81 @@ public class EnemySpawner : MonoBehaviour
     private int enemySpawnerIndex = 0;
 
 
-   
+    private void OnEnable()
+    {
+        Actions.OnEnemyKilled += SpawnEnemy;
 
-    // Update is called once per frame
-    void Update()
+
+    }
+
+    private void OnDisable()
+    {
+        Actions.OnEnemyKilled -= SpawnEnemy;
+    }
+
+    void DelaySpawn()
     {
 
-        SpawnEnemy();
+        Invoke("SpawnEnemy", 1);
+
+
+
     }
+
+
+  
+    //void Update()
+    //{
+
+    //    SpawnEnemy();
+    //}
+
+
+    //public void SpawnEnemy()
+    //{
+
+    //    while (enemySpawnerIndex < enemiesPrefabs.Count &&
+    //        GameObject.FindWithTag("Enemy") == null)
+    //    {
+
+    //        if (enemySpawnerIndex % 2 == 1)
+    //        {
+    //            //Debug.Log("new enemy generated");
+    //            currentEnemy = Instantiate(enemiesPrefabs[enemySpawnerIndex],
+    //                enemyPositions[enemySpawnerIndex].transform.position,
+    //                Quaternion.Euler(0f, 180f, 0f));
+                
+                
+    //            currentEnemy.GetComponent<EnemyController>().enabled = false;
+                
+
+
+    //        }
+    //        else if(enemySpawnerIndex % 2 == 0)
+    //        {
+    //            //Debug.Log("new enemy generated");
+    //            currentEnemy = Instantiate(enemiesPrefabs[enemySpawnerIndex],
+    //                enemyPositions[enemySpawnerIndex].transform.position,
+    //                Quaternion.identity);
+
+
+    //            currentEnemy.GetComponent<EnemyController>().enabled = false;
+                
+
+    //        }
+
+    //        enemySpawnerIndex++;
+
+    //    }
+        
+    //}
+
 
 
     public void SpawnEnemy()
     {
 
-        while (enemySpawnerIndex < enemiesPrefabs.Count &&
+        if (enemySpawnerIndex < enemiesPrefabs.Count &&
             GameObject.FindWithTag("Enemy") == null)
         {
 
@@ -34,14 +95,14 @@ public class EnemySpawner : MonoBehaviour
                 currentEnemy = Instantiate(enemiesPrefabs[enemySpawnerIndex],
                     enemyPositions[enemySpawnerIndex].transform.position,
                     Quaternion.Euler(0f, 180f, 0f));
-                
-                
+
+
                 currentEnemy.GetComponent<EnemyController>().enabled = false;
-                
+
 
 
             }
-            else if(enemySpawnerIndex % 2 == 0)
+            else if (enemySpawnerIndex % 2 == 0)
             {
                 //Debug.Log("new enemy generated");
                 currentEnemy = Instantiate(enemiesPrefabs[enemySpawnerIndex],
@@ -50,14 +111,14 @@ public class EnemySpawner : MonoBehaviour
 
 
                 currentEnemy.GetComponent<EnemyController>().enabled = false;
-                
+
 
             }
 
             enemySpawnerIndex++;
 
         }
-        
+
 
     }
 }

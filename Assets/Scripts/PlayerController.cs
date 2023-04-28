@@ -18,13 +18,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float roughness;
     [SerializeField] float fadeInTime;
     [SerializeField] float fadeOutTime;
+    [SerializeField] List<GameObject> enemyPositions;
 
     private float currentAngle;
     public static bool hasShot;
     private GameObject enemy;
     private Vector2 lastEnemyPosition;
     private Transform playerTransform;
-    
+    private int enemyPositionIndex = 0;
+
     void Start()
     {
         hasShot = false;
@@ -32,14 +34,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        Actions.OnEnemyKilled += DelayMove;
+        Actions.OnEnemyKilled += Move;
         
 
     }
 
     private void OnDisable()
     {
-        Actions.OnEnemyKilled -= DelayMove;
+        Actions.OnEnemyKilled -= Move;
     }
 
     void Update()
@@ -66,7 +68,6 @@ public class PlayerController : MonoBehaviour
     {
 
         Invoke("Move", 1);
-
 
     }
 
