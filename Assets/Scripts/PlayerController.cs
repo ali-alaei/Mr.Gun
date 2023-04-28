@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float shootingForce = 10.0f;
     [SerializeField] float playerMoveSpeed = 2.0f;
     [SerializeField] Animator gunAnimator;
+    [SerializeField] float magnitude;
+    [SerializeField] float roughness;
+    [SerializeField] float fadeInTime;
+    [SerializeField] float fadeOutTime;
+
     private float currentAngle;
     public static bool hasShot;
     private GameObject enemy;
@@ -26,14 +32,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        Actions.OnEnemyKilled += Move;
+        Actions.OnEnemyKilled += DelayMove;
         
 
     }
 
     private void OnDisable()
     {
-        Actions.OnEnemyKilled -= Move;
+        Actions.OnEnemyKilled -= DelayMove;
     }
 
     void Update()
@@ -56,9 +62,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void Move()
+    void DelayMove()
     {
 
+        Invoke("Move", 1);
+
+
+    }
+
+
+    void Move()
+    {
+        
         StartCoroutine(MoveToNextPosition());
 
     }
@@ -125,6 +140,8 @@ public class PlayerController : MonoBehaviour
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(gun.transform.right * shootingForce);
             gunAnimator.SetTrigger("Shoot");
+            CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeInTime,
+                fadeOutTime);
             hasShot = true;
             //Destroy(bulletPrefab, 2);
             

@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private float yOffset = 5f;
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float yOffset;
+    [SerializeField] private float moveSpeed;
     private bool isMoving = false;
 
 
     private void OnEnable()
     {
-        Actions.OnEnemyKilled += MoveCamera;
+        Actions.OnEnemyKilled += DelayMoveCamera;
     }
 
     private void OnDisable()
     {
-        Actions.OnEnemyKilled -= MoveCamera;
+        Actions.OnEnemyKilled -= DelayMoveCamera;
+    }
+
+    void DelayMoveCamera()
+    {
+
+        Invoke("MoveCamera", 1);
+
     }
 
     public void MoveCamera()
