@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     private float currentAngle;
     public static bool hasShot;
     private GameObject enemy;
-    private Vector2 lastEnemyPosition;
     private Transform playerTransform;
     private int enemyPositionIndex = 0;
 
@@ -30,35 +29,25 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        Actions.OnEnemyKilled += Move;
+        Actions.OnEnemyKilled += DelayMove;
         
 
     }
 
     private void OnDisable()
     {
-        Actions.OnEnemyKilled -= Move;
+        Actions.OnEnemyKilled -= DelayMove;
     }
 
     void Update()
     {
 
-        FindLatestEnemyPosition();
+        
         GunRotator();
         BulletShooter();
     }
 
-    void FindLatestEnemyPosition()
-    {
-
-        enemy = GameObject.FindWithTag("Enemy");
-        if (enemy != null)
-        {
-            lastEnemyPosition = enemy.transform.position;
-        }
-        
-
-    }
+    
 
     void DelayMove()
     {
@@ -81,14 +70,14 @@ public class PlayerController : MonoBehaviour
         GetComponent<PlayerController>().enabled = false;
 
         // Calculate the distance to the target position
-        float distance = Vector2.Distance(transform.position, lastEnemyPosition);
+        float distance = Vector2.Distance(transform.position, enemyPositions[enemyPositionIndex].transform.position);
 
         // Move the player towards the target position until they reach it
         while (distance > 0.1f)
         {
             transform.position = Vector2.MoveTowards(transform.position,
-                lastEnemyPosition, playerMoveSpeed * Time.deltaTime);
-            distance = Vector3.Distance(transform.position, lastEnemyPosition);
+                enemyPositions[enemyPositionIndex].transform.position, playerMoveSpeed * Time.deltaTime);
+            distance = Vector3.Distance(transform.position, enemyPositions[enemyPositionIndex].transform.position);
             yield return null;
             //yield return new WaitForSeconds(0.5f);
 
@@ -98,6 +87,7 @@ public class PlayerController : MonoBehaviour
         GetComponent<PlayerController>().enabled = true;
 
         Flip();
+        enemyPositionIndex++;
 
     }
 
@@ -138,7 +128,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(gun.transform.right * shootingForce);
             gunAnimator.SetTrigger("Shoot");
             hasShot = true;
-            Destroy(bulletPrefab, 2);
+          
             
         }
 

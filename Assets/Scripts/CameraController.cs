@@ -11,12 +11,12 @@ public class CameraController : MonoBehaviour
 
     private void OnEnable()
     {
-        Actions.OnEnemyKilled += MoveCamera;
+        Actions.OnEnemyKilled += DelayMoveCamera;
     }
 
     private void OnDisable()
     {
-        Actions.OnEnemyKilled -= MoveCamera;
+        Actions.OnEnemyKilled -= DelayMoveCamera;
     }
 
     void DelayMoveCamera()

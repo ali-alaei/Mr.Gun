@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 73640
+  controlID: 76736
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 73641
+  controlID: 76683
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 73642
+  controlID: 76661
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -832,8 +832,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 4207feff
+    m_LastClickedInstanceID: -129214
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300004e4e0000305e00009c4d00000870000042710000b64d00002c550000185a00003e570000364e00002e4e0000564e0000844e00003c8b0000e88a00001e8b0000c84f00009850000000000000
     m_RenameOverlay:
@@ -921,7 +921,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 20208
+  m_LastSelectedObjectID: -129214
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -982,7 +982,7 @@ MonoBehaviour:
     m_CachedPref: -377
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: -129214
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0

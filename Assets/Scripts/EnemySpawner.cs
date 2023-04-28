@@ -13,14 +13,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        Actions.OnEnemyKilled += SpawnEnemy;
+        Actions.OnEnemyKilled += DelaySpawn;
 
 
     }
 
     private void OnDisable()
     {
-        Actions.OnEnemyKilled -= SpawnEnemy;
+        Actions.OnEnemyKilled -= DelaySpawn;
     }
 
     void DelaySpawn()
