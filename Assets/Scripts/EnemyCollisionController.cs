@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using EZCameraShake;
 using UnityEngine;
 
 public class EnemyCollisionController : MonoBehaviour
 {
-
     public static bool isDead;
 
     private void Start()
@@ -20,6 +20,7 @@ public class EnemyCollisionController : MonoBehaviour
            
             isDead = true;
             Actions.OnEnemyKilled?.Invoke();
+            CameraShaker.Instance.ShakeOnce(1.5f, 20f, 0.5f, 0.5f);
             Destroy(gameObject);
             PlayerController.hasShot = false;
             
