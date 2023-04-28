@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Actions.OnPlayerKilled?.Invoke();
+            Actions.OnPlayerKilled.Invoke();
             Destroy(gameObject);
 
         }

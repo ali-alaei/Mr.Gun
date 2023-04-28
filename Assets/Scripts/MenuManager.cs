@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuController : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
-
     private void OnEnable()
     {
         Actions.OnPlayerKilled += LoadGameOverMenu;
@@ -16,29 +15,19 @@ public class MenuController : MonoBehaviour
         Actions.OnPlayerKilled -= LoadGameOverMenu;
     }
 
-
-    public void PlayGame()
-    {
-
-        SceneManager.LoadScene("Game");
-
-
-    }
-
-    public void QuitGame()
-    {
-
-
-        Debug.Log("Quit");
-
-        Application.Quit();
-    }
-
     public void LoadGameOverMenu()
+    {
+        Debug.Log("GameOver");
+        Invoke("LoadMenu", 1f);
+       
+
+
+    }
+
+    void LoadMenu()
     {
 
         SceneManager.LoadScene("GameOverMenu");
-
 
     }
 }

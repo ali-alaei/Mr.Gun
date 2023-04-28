@@ -27,13 +27,13 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
-        if (player == null)
-        {
-            // stop the game
-            //EditorApplication.isPlaying = false;
-            Debug.Log("Game Over");
+        //if (player == null)
+        //{
+        //    // stop the game
+        //    //EditorApplication.isPlaying = false;
+        //    Debug.Log("Game Over");
 
-        }
+        //}
 
         if (currentEnemy == null)
         {
@@ -50,7 +50,7 @@ public class TurnManager : MonoBehaviour
         while (true)
         {
 
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(2f);
 
             // switching to enemy
             if (PlayerController.hasShot && !EnemyCollisionController.isDead)
