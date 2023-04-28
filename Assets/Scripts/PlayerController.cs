@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject firePoint;
     [SerializeField] float shootingForce = 10.0f;
     [SerializeField] float playerMoveSpeed = 2.0f;
+    [SerializeField] Animator gunAnimator;
     private float currentAngle;
     public static bool hasShot;
     private GameObject enemy;
@@ -123,8 +124,9 @@ public class PlayerController : MonoBehaviour
                 firePoint.transform.position, firePoint.transform.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(gun.transform.right * shootingForce);
-         
+            gunAnimator.SetTrigger("Shoot");
             hasShot = true;
+            //Destroy(bulletPrefab, 2);
             
         }
 
