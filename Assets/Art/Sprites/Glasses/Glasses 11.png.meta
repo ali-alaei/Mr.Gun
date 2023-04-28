@@ -86,10 +86,10 @@ TextureImporter:
       name: Helmet F
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 512
-        height: 512
+        x: 193
+        y: 225
+        width: 99
+        height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -106,7 +106,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5dc63aaeac7d34799ab55e5dc2896e15
     internalID: 0
     vertices: []
     indices: 
