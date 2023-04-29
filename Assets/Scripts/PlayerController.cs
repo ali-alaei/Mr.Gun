@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +24,12 @@ public class PlayerController : MonoBehaviour
     private GameObject enemy;
     private Transform playerTransform;
     private int enemyPositionIndex = 0;
+    private Gamepad gamepad;
+
+    private void Awake()
+    {
+        gamepad = Gamepad.current;
+    }
 
     void Start()
     {
@@ -45,12 +52,11 @@ public class PlayerController : MonoBehaviour
         //Actions.OnEnemyKilled -= IncreaseRotationSpeed;
     }
 
-    //void IncreaseRotationSpeed()
-    //{
+    void IncreaseRotationSpeed()
+    {
 
-
-    //    rotationSpeed += 0.1f;
-    //}
+        rotationSpeed += 0.1f;
+    }
 
     void Update()
     {
@@ -132,7 +138,7 @@ public class PlayerController : MonoBehaviour
 
     void BulletShooter()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !hasShot)
+        if ((Input.GetKeyDown(KeyCode.Space) || gamepad.rightTrigger.wasPressedThisFrame) && !hasShot)
         {
             
             GameObject bullet = Instantiate(bulletPrefab,
