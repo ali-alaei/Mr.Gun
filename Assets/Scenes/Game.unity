@@ -2278,6 +2278,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 289917849993804762, guid: 3eff51947de074f0eb49230f03a7c9ee, type: 3}
     - target: {fileID: 7431621379865308902, guid: 126fc320b73634cb6a30a7aa653bc7a1, type: 3}
+      propertyPath: explosionPrefab
+      value: 
+      objectReference: {fileID: 3854609199170559939, guid: 28cdba702b66e4d168ac9515a76955e7, type: 3}
+    - target: {fileID: 7431621379865308902, guid: 126fc320b73634cb6a30a7aa653bc7a1, type: 3}
       propertyPath: enemyPositions.Array.data[0]
       value: 
       objectReference: {fileID: 1034650618}

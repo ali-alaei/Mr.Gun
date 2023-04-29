@@ -13,11 +13,13 @@ public class AudioManager : MonoBehaviour
     private void OnEnable()
     {
         Actions.OnEnemyKilled += PlayExplosionSound;
+        Actions.OnPlayerKilled += PlayExplosionSound;
     }
 
     private void OnDisable()
     {
         Actions.OnEnemyKilled -= PlayExplosionSound;
+        Actions.OnPlayerKilled -= PlayExplosionSound;
     }
 
     void PlayExplosionSound()

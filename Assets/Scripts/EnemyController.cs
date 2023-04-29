@@ -14,16 +14,17 @@ public class EnemyController : MonoBehaviour
     
     public float bulletSpeed = 10f;
     private Transform playerTransform;
-    
+    private AudioSource shootingSound;
+
     Vector2 directionTowardPlayer;
     
 
 
     void Start()
     {
-        Debug.Log("EnemyController Started");
         
-        
+        shootingSound = GetComponent<AudioSource>();
+
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         //Debug.Log("Player Position:" + playerTransform.position);
         directionTowardPlayer = (playerTransform.position - transform.position).normalized;
@@ -48,7 +49,7 @@ public class EnemyController : MonoBehaviour
 
     private void Shoot()
     {
-
+        shootingSound.Play();
         GameObject bullet = Instantiate(bulletPrefab,
             firePoint.transform.position, Quaternion.identity);
 

@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float playerMoveSpeed = 2.0f;
     [SerializeField] Animator gunAnimator;
     [SerializeField] List<GameObject> enemyPositions;
+    [SerializeField] ParticleSystem explosionPrefab;
 
     private AudioSource shootingSound;
     private float currentAngle;
@@ -142,6 +143,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Actions.OnPlayerKilled.Invoke();
+            Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity).Play();
             Destroy(gameObject);
 
         }
