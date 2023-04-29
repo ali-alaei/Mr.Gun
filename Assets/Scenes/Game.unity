@@ -1408,7 +1408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb065461131b4f49b8b3bb5856135dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffect: {fileID: 8300000, guid: f97d03c564e9e48a69b84e688985244c, type: 3}
 --- !u!1 &742341617
 GameObject:
   m_ObjectHideFlags: 0
@@ -4233,11 +4232,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: a6a548f4966324eed842849f60c22aa5, type: 3}
     - target: {fileID: 7431621379865308902, guid: 126fc320b73634cb6a30a7aa653bc7a1, type: 3}
       propertyPath: rotationAngle
-      value: 60
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 7431621379865308902, guid: 126fc320b73634cb6a30a7aa653bc7a1, type: 3}
       propertyPath: rotationSpeed
-      value: 0.8
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7431621379865308902, guid: 126fc320b73634cb6a30a7aa653bc7a1, type: 3}
       propertyPath: shootingSound

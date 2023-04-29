@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2374964117212059137, guid: 8c50bb1e5b6f440fd9d8d904e63897d4, type: 3}
+      propertyPath: m_Size.x
+      value: 0.80640364
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374964117212059137, guid: 8c50bb1e5b6f440fd9d8d904e63897d4, type: 3}
+      propertyPath: m_Size.y
+      value: 2.4575572
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374964117212059137, guid: 8c50bb1e5b6f440fd9d8d904e63897d4, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.18779588
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374964117212059137, guid: 8c50bb1e5b6f440fd9d8d904e63897d4, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.28660154
+      objectReference: {fileID: 0}
     - target: {fileID: 2374964117212059138, guid: 8c50bb1e5b6f440fd9d8d904e63897d4, type: 3}
       propertyPath: explosionPrefab
       value: 

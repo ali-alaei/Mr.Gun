@@ -6,13 +6,13 @@ using EZCameraShake;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float rotationSpeed = 100.0f;
-    [SerializeField] float rotationAngle = 30.0f;
+    [SerializeField] float rotationSpeed;
+    [SerializeField] float rotationAngle;
     [SerializeField] GameObject gun;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject firePoint;
-    [SerializeField] float shootingForce = 10.0f;
-    [SerializeField] float playerMoveSpeed = 2.0f;
+    [SerializeField] float shootingForce;
+    [SerializeField] float playerMoveSpeed;
     [SerializeField] Animator gunAnimator;
     [SerializeField] List<GameObject> enemyPositions;
     [SerializeField] ParticleSystem explosionPrefab;
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         Actions.OnEnemyKilled += DelayMove;
+        Actions.OnEnemyKilled += IncreaseRotationSpeed;
         
 
     }
@@ -41,6 +42,14 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         Actions.OnEnemyKilled -= DelayMove;
+        Actions.OnEnemyKilled -= IncreaseRotationSpeed;
+    }
+
+    void IncreaseRotationSpeed()
+    {
+
+
+        rotationSpeed += 0.15f;
     }
 
     void Update()
