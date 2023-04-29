@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         Actions.OnEnemyKilled += DelayMove;
-        //Actions.OnEnemyKilled += IncreaseRotationSpeed;
+        Actions.OnEnemyKilled += IncreaseRotationSpeed;
         
 
     }
@@ -49,13 +49,13 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         Actions.OnEnemyKilled -= DelayMove;
-        //Actions.OnEnemyKilled -= IncreaseRotationSpeed;
+        Actions.OnEnemyKilled -= IncreaseRotationSpeed;
     }
 
     void IncreaseRotationSpeed()
     {
 
-        rotationSpeed += 0.1f;
+        rotationSpeed += 0.15f;
     }
 
     void Update()
