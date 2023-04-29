@@ -7,24 +7,47 @@ public class MenuManager : MonoBehaviour
 {
     private void OnEnable()
     {
-        Actions.OnPlayerKilled += LoadGameOverMenu;
+        Actions.OnPlayerKilled += LoadGameOverMenuWithDelay;
+        Actions.OnPlayerWon += LoadWonMenuWithDelay;
     }
 
     private void OnDisable()
     {
-        Actions.OnPlayerKilled -= LoadGameOverMenu;
+        Actions.OnPlayerKilled -= LoadGameOverMenuWithDelay;
+        Actions.OnPlayerWon -= LoadWonMenuWithDelay;
     }
 
-    public void LoadGameOverMenu()
+    public void LoadGameOverMenuWithDelay()
     {
-        Debug.Log("GameOver");
-        Invoke("LoadMenu", 1f);
+        //Debug.Log("GameOver");
+        Invoke("LoadGameOverMenu", 3f);
        
 
 
     }
 
-    void LoadMenu()
+    public void LoadWonMenuWithDelay()
+    {
+        //Debug.Log("You Won");
+        Invoke("LoadWonMenu", 3f);
+
+
+
+    }
+
+    void LoadWonMenu()
+    {
+
+
+        SceneManager.LoadScene("WonMenu");
+
+    }
+
+
+
+
+
+    void LoadGameOverMenu()
     {
 
         SceneManager.LoadScene("GameOverMenu");

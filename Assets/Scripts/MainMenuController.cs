@@ -25,10 +25,13 @@ public class MainMenuController : MonoBehaviour
     {
 
 
-        Debug.Log("Quit the Game");
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
 
-        Application.Quit();
     }
 
-    
+
 }

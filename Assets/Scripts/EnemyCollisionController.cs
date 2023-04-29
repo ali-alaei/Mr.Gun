@@ -12,7 +12,7 @@ public class EnemyCollisionController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("EnemyCollision started");
+        
         isDead = false;
         
     }

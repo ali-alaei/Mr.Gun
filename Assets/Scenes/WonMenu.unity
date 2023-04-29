@@ -262,7 +262,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000076293945, y: -51}
+  m_AnchoredPosition: {x: -0.0000076293945, y: -42}
   m_SizeDelta: {x: 376.7849, y: 110.21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &984243204
@@ -731,7 +731,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 74}
+  m_AnchoredPosition: {x: 8, y: 71.813}
   m_SizeDelta: {x: 448.2903, y: 17.4161}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1605604046
@@ -754,7 +754,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME OVER
+  m_text: 'YouWon
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
