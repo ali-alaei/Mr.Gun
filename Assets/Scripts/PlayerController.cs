@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator gunAnimator;
     [SerializeField] List<GameObject> enemyPositions;
 
+    private AudioSource shootingSound;
     private float currentAngle;
     public static bool hasShot;
     private GameObject enemy;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         hasShot = false;
+        shootingSound = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -124,6 +126,7 @@ public class PlayerController : MonoBehaviour
             
             GameObject bullet = Instantiate(bulletPrefab,
                 firePoint.transform.position, firePoint.transform.rotation);
+            shootingSound.Play();
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(gun.transform.right * shootingForce);
             gunAnimator.SetTrigger("Shoot");

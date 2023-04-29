@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class EnemyCollisionController : MonoBehaviour
 {
-    public static bool isDead;
+    
     [SerializeField] ParticleSystem explosionPrefab;
+    public static bool isDead;
+    private AudioSource explosionSound;
 
     private void Start()
     {
         Debug.Log("EnemyCollision started");
         isDead = false;
+        explosionSound = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -22,8 +25,9 @@ public class EnemyCollisionController : MonoBehaviour
             isDead = true;
             Actions.OnEnemyKilled?.Invoke();
             Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity).Play();
-            CameraShaker.Instance.ShakeOnce(1.5f, 20f, 0.5f, 0.5f);
+            explosionSound.Play();
             Destroy(gameObject);
+            CameraShaker.Instance.ShakeOnce(1.5f, 20f, 0.5f, 0.5f);
             PlayerController.hasShot = false;
             
 
