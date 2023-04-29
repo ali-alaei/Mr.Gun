@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         hasShot = false;
         shootingSound = GetComponent<AudioSource>();
+
     }
 
     private void OnEnable()
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        
+        Actions.OnPlayerMove?.Invoke();
         StartCoroutine(MoveToNextPosition());
 
     }

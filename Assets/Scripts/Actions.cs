@@ -8,4 +8,5 @@ public static class Actions
     public static Action OnEnemyKilled;
     public static Action OnPlayerKilled;
     public static Action OnPlayerWon;
+    public static Action OnPlayerMove;
 }
