@@ -4127,6 +4127,10 @@ PrefabInstance:
       value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7431621379865308902, guid: 126fc320b73634cb6a30a7aa653bc7a1, type: 3}
+      propertyPath: rotationSpeed
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431621379865308902, guid: 126fc320b73634cb6a30a7aa653bc7a1, type: 3}
       propertyPath: shootingSound
       value: 
       objectReference: {fileID: 289917849993804762, guid: 3eff51947de074f0eb49230f03a7c9ee, type: 3}

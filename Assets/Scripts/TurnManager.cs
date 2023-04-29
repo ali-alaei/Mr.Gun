@@ -44,7 +44,7 @@ public class TurnManager : MonoBehaviour
         while (true)
         {
 
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(5f);
 
             // switching to enemy
             if (PlayerController.hasShot && !EnemyCollisionController.isDead)
