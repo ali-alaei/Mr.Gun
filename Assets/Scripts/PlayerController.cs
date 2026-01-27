@@ -138,7 +138,8 @@ public class PlayerController : MonoBehaviour
 
     void BulletShooter()
     {
-        if ((Input.GetKeyDown(KeyCode.Space) || gamepad.rightTrigger.wasPressedThisFrame) && !hasShot)
+        if ((Input.GetKeyDown(KeyCode.Space) ||
+         (gamepad != null && gamepad.rightTrigger.wasPressedThisFrame)) && !hasShot)
         {
             
             GameObject bullet = Instantiate(bulletPrefab,
