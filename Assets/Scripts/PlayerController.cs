@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] TurnManager turnManager;
     [SerializeField] float rotationSpeed;
     [SerializeField] float rotationAngle;
     [SerializeField] GameObject gun;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator gunAnimator;
     [SerializeField] List<GameObject> enemyPositions;
     [SerializeField] ParticleSystem explosionPrefab;
+    
 
     private AudioSource shootingSound;
     private float currentAngle;
@@ -28,7 +30,10 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        gamepad = Gamepad.current;
+        if (this.gamepad == null)
+        {
+            this.gamepad = Gamepad.current;
+        }        
     }
 
     void Start()
@@ -60,19 +65,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
-        
         GunRotator();
-        BulletShooter();
+        Shoot();
     }
 
     
 
     void DelayMove()
     {
-
         Invoke("Move", 1);
-
     }
 
 
@@ -80,7 +81,6 @@ public class PlayerController : MonoBehaviour
     {
         Actions.OnPlayerMove?.Invoke();
         StartCoroutine(MoveToNextPosition());
-
     }
 
     IEnumerator MoveToNextPosition()
@@ -123,7 +123,6 @@ public class PlayerController : MonoBehaviour
         
         float normalizedTime = Mathf.PingPong(Time.time * rotationSpeed, 1.0f);
         currentAngle = Mathf.Lerp(0.0f, rotationAngle, normalizedTime);
-        //gun.transform.rotation = Quaternion.Euler(0, 0, currentAngle);
 
         // Get the current rotation of the gun
         Quaternion currentRotation = gun.transform.rotation;
@@ -136,12 +135,12 @@ public class PlayerController : MonoBehaviour
         gun.transform.rotation = newRotation;
     }
 
-    void BulletShooter()
+    void Shoot()
     {
         if ((Input.GetKeyDown(KeyCode.Space) ||
          (gamepad != null && gamepad.rightTrigger.wasPressedThisFrame)) && !hasShot)
         {
-            
+            this.turnManager.OnPlayerShotStarted();
             GameObject bullet = Instantiate(bulletPrefab,
                 firePoint.transform.position, firePoint.transform.rotation);
             shootingSound.Play();
@@ -149,6 +148,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(gun.transform.right * shootingForce);
             gunAnimator.SetTrigger("Shoot");
             hasShot = true;
+            Debug.Log($"[Player] SHOT fired at t={Time.time:F2}");
           
             
         }

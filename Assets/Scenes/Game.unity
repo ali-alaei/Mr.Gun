@@ -320,6 +320,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6533036845853250328, guid: f860fcd0498654163bf26fbd30dbbe9d, type: 3}
   m_PrefabInstance: {fileID: 6533036845382899272}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1812530520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6533036845853250329, guid: f860fcd0498654163bf26fbd30dbbe9d, type: 3}
+  m_PrefabInstance: {fileID: 6533036845382899272}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812530511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6833a6035d32467ca33d53e80cdcabb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1850035867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3827934213501258816, guid: 215d7579dd03b4ab7aa24001f55fa723, type: 3}
@@ -385,6 +396,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4762844024174852197, guid: 179c09933e7ca4916966936b21f5956c, type: 3}
+      propertyPath: turnManager
+      value: 
+      objectReference: {fileID: 1812530520}
     - target: {fileID: 4762844024174852197, guid: 179c09933e7ca4916966936b21f5956c, type: 3}
       propertyPath: enemyPositions.Array.data[0]
       value: 

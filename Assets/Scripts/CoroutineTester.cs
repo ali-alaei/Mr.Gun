@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoroutineTester : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     void Start()
     {
         StartCoroutine(MyCoroutine(10));
@@ -26,19 +26,5 @@ public class CoroutineTester : MonoBehaviour
 
     }
 
-    //private void Update()
-    //{
-    //    int i = 0;
-    //    int count = 11;
 
-    //    while (i < count)
-    //    {
-    //        i++;
-    //        Debug.Log(i);
-    //        //yield return new WaitForSeconds(2);
-    //    }
-
-    //    Debug.Log("update is done");
-
-    //}
 }

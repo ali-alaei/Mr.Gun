@@ -37,7 +37,7 @@ public class EnemyController : MonoBehaviour
         
         if (!isTurnComplete)
         {
-            //Debug.Log("Enemy has shot");
+            // Enemy should shoot whenever its turn comes
             Shoot();
 
         }
