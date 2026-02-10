@@ -7,11 +7,12 @@ TagManager:
   - Bullet
   - Enemy
   - GameMusic
+  - MissZone
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - MissZone
   - Water
   - UI
   - 

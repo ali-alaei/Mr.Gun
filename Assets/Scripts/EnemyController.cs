@@ -52,7 +52,9 @@ public class EnemyController : MonoBehaviour
         shootingSound.Play();
         GameObject bullet = Instantiate(bulletPrefab,
             firePoint.transform.position, Quaternion.identity);
-
+        var bulletController = bullet.GetComponent<BulletController>();
+        bulletController.SetShooterType(BulletController.ShooterType.Enemy);
+        
         // set the bullet's velocity and direction
         bullet.GetComponent<Rigidbody2D>().velocity = directionTowardPlayer * bulletSpeed;
 

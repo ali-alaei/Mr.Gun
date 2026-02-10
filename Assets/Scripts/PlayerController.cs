@@ -138,18 +138,18 @@ public class PlayerController : MonoBehaviour
     void Shoot()
     {
         if ((Input.GetKeyDown(KeyCode.Space) ||
-         (gamepad != null && gamepad.rightTrigger.wasPressedThisFrame)) && !hasShot)
+         (gamepad != null && gamepad.rightTrigger.wasPressedThisFrame)) && turnManager.IsPlayerTurn())
         {
             this.turnManager.OnPlayerShotStarted();
             GameObject bullet = Instantiate(bulletPrefab,
                 firePoint.transform.position, firePoint.transform.rotation);
+            var bulletController = bullet.GetComponent<BulletController>();
+            bulletController.SetShooterType(BulletController.ShooterType.Player);
             shootingSound.Play();
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(gun.transform.right * shootingForce);
             gunAnimator.SetTrigger("Shoot");
-            hasShot = true;
-            Debug.Log($"[Player] SHOT fired at t={Time.time:F2}");
-          
+            hasShot = true;          
             
         }
 
@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Actions.OnPlayerKilled.Invoke();
+            Actions.OnPlayerKilled?.Invoke();
             Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity).Play();
             Destroy(gameObject);
 

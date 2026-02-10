@@ -17,8 +17,17 @@ public class TurnManager : MonoBehaviour
         PlayerTurn,
         WaitingForShotResult,
         EnemyTurn
+    }
 
 
+    void OnEnable()
+    {
+        Actions.OnPlayerShotResolved += HandlePlayerShotResolved;
+    }
+
+    void OnDisable()
+    {
+        Actions.OnPlayerShotResolved -= HandlePlayerShotResolved;
     }
 
     private void Awake()
@@ -54,10 +63,11 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void OnPlayerShotResolved(bool hit)
+    public void HandlePlayerShotResolved(bool hit)
     {
         if (currentState == TurnState.WaitingForShotResult && !hit)
         {
+            Debug.Log("miss, switch to enemy");
             this.currentState = TurnState.EnemyTurn;
             if (currentEnemy != null)
             {
@@ -66,41 +76,21 @@ public class TurnManager : MonoBehaviour
         }
         else if (currentState == TurnState.WaitingForShotResult && hit)
         {
+            Debug.Log("hit, keep player");
             this.currentState = TurnState.PlayerTurn;
         }
     }
 
-
-    // private IEnumerator TurnCoroutine()
-    // {
-    //     while (true)
-    //     {
-
-    //         Debug.Log($"Before yield return at t={Time.time:F2}");
-
-    //         yield return new WaitForSeconds(5f);
-
-    //         Debug.Log($"After yield return at t={Time.time:F2}");
-
-
-    //         // switching to enemy
-    //         if (PlayerController.hasShot && !EnemyCollisionController.isDead)
-
-    //         {
-
-    //             Debug.Log($"[TurnManager] About to switch to ENEMY at t={Time.time:F2} | hasShot={PlayerController.hasShot} | enemyDead={EnemyCollisionController.isDead} | enemyNull={(currentEnemy == null)}");
-
-
-    //             currentEnemy.GetComponent<EnemyController>().enabled = true;
-
-
-    //             Debug.Log($"[TurnManager] Switched to ENEMY at t={Time.time:F2}");
-                    
-    //         }
-         
-
-    //     }
-    // }
-        
+    public bool IsPlayerTurn()
+    {
+        if (this.currentState == TurnState.PlayerTurn)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }    
 }
 
