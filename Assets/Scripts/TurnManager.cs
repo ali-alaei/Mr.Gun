@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 
 public class TurnManager : MonoBehaviour
 {
-    [SerializeField] GameObject player;
     [SerializeField] EnemySpawner enemySpawner;
     private GameObject currentEnemy;
 
@@ -39,12 +35,6 @@ public class TurnManager : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        
-        // StartCoroutine(TurnCoroutine());
-    }
-
 
     private void Update()
     {
@@ -67,7 +57,6 @@ public class TurnManager : MonoBehaviour
     {
         if (currentState == TurnState.WaitingForShotResult && !hit)
         {
-            Debug.Log("miss, switch to enemy");
             this.currentState = TurnState.EnemyTurn;
             if (currentEnemy != null)
             {
@@ -76,7 +65,6 @@ public class TurnManager : MonoBehaviour
         }
         else if (currentState == TurnState.WaitingForShotResult && hit)
         {
-            Debug.Log("hit, keep player");
             this.currentState = TurnState.PlayerTurn;
         }
     }

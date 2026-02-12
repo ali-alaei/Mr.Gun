@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using EZCameraShake;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -22,9 +20,6 @@ public class PlayerController : MonoBehaviour
 
     private AudioSource shootingSound;
     private float currentAngle;
-    public static bool hasShot;
-    private GameObject enemy;
-    private Transform playerTransform;
     private int enemyPositionIndex = 0;
     private Gamepad gamepad;
 
@@ -38,7 +33,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        hasShot = false;
         shootingSound = GetComponent<AudioSource>();
 
     }
@@ -149,8 +143,6 @@ public class PlayerController : MonoBehaviour
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(gun.transform.right * shootingForce);
             gunAnimator.SetTrigger("Shoot");
-            hasShot = true;          
-            
         }
 
     }

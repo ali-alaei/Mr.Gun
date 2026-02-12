@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
@@ -9,7 +7,7 @@ public class BulletController : MonoBehaviour
         Player,
         Enemy
     }
-    [SerializeField]private float lifetime = 2f;
+    private const float lifetime = 5.0f;
     private ShooterType shooter;
     private bool shotHasResolved = false;
     
@@ -17,16 +15,11 @@ public class BulletController : MonoBehaviour
     {
         this.shooter = shooter;
     }
-    public ShooterType GetShooterType()
-    {
-        return this.shooter;
-    }
-    // add a constructor, pass the game object which is the owner and when it collides ask it who is your owner
-    
+
 
     void Start()
     {
-        Destroy(gameObject, lifetime); // destroy bullet after lifetime seconds
+        Invoke(nameof(HandleLifetimeFallback), lifetime);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -58,6 +51,16 @@ public class BulletController : MonoBehaviour
         {
             Destroy(gameObject); // destroy bullet on collision
         }
+    }
+
+    private void HandleLifetimeFallback()
+    {
+        if (!shotHasResolved && shooter == ShooterType.Player)
+        {
+            shotHasResolved = true;
+            Actions.OnPlayerShotResolved?.Invoke(false);    
+        }
+        Destroy(gameObject);
     }
 
 
