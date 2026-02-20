@@ -924,6 +924,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8367676519088413859, guid: 6ab4574aa72804b3f8ca0e6c74704b3f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367676519088413859, guid: 6ab4574aa72804b3f8ca0e6c74704b3f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.39607847
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367676519088413859, guid: 6ab4574aa72804b3f8ca0e6c74704b3f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.050980397
+      objectReference: {fileID: 0}
     - target: {fileID: 8367676519267499020, guid: 6ab4574aa72804b3f8ca0e6c74704b3f, type: 3}
       propertyPath: m_Name
       value: GameWorld
