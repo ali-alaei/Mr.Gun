@@ -360,6 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8922a800f0b54e3587d75252f7e6a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnManager: {fileID: 0}
   rotationSpeed: 0.5
   rotationAngle: 75
   gun: {fileID: 4762844025052398987}
