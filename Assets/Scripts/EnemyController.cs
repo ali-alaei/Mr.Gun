@@ -7,8 +7,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject firePoint;
 
-    public bool isTurnComplete = false;
-    
+    private bool isTurnComplete = false;
     public float bulletSpeed = 10f;
     private Transform playerTransform;
     private AudioSource shootingSound;
@@ -54,7 +53,6 @@ public class EnemyController : MonoBehaviour
         
         // set the bullet's velocity and direction
         bullet.GetComponent<Rigidbody2D>().velocity = directionTowardPlayer * bulletSpeed;
-
         isTurnComplete = true;
 
     }

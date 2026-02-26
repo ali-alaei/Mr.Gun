@@ -28,9 +28,8 @@ public class EnemySpawner : MonoBehaviour
 
 
 
-    public void SpawnEnemy()
+    public void SpawnEnemy() 
     {
-
         if (enemySpawnerIndex < enemiesPrefabs.Count &&
             GameObject.FindWithTag("Enemy") == null)
         {
@@ -59,7 +58,5 @@ public class EnemySpawner : MonoBehaviour
         {
             Actions.OnPlayerWon?.Invoke();
         }
-
-
     }
 }
